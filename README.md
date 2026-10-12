@@ -15,7 +15,15 @@ uvicorn app.main:app --port 8000
 Set `MONGO_URI` to your Atlas connection string when using Atlas. The API creates its indexes at startup; environment variables take precedence over values in `.env`.
 
 ## Local Fixtures
-`employees.json` and `attendance_logs.json` are local Extended JSON fixtures. They are not loaded automatically, and the kit's `sample_seed.py` / `sample_data/` files were not present in this workspace. Use a disposable database when loading fixtures.
+`sample_data/` and `sample_seed.py` are local-only and excluded from Git. Seed a disposable database before starting the app:
+
+```powershell
+$env:MONGO_DB = "attendance_sample"
+python sample_seed.py
+uvicorn app.main:app --port 8000
+```
+
+The seeder upserts fixture employees and attendance by their natural keys and never clears collections. It refuses `attendance_db` to avoid changing the app's default database. Set the same `MONGO_URI` for seeding and running when using Atlas.
 
 ## Verification (12 Oct 2026)
 Tested on local MongoDB 8.3.8. `GET /health`, `/docs`, all four July analytics requests, and all five `/admin/explain` requests returned 200. Every explain output contained `IXSCAN` and no `COLLSCAN`.

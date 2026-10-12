@@ -1,6 +1,6 @@
 # REVIEW.md
 
-Review of the starter `app/main.py`. All items below are fixed in my version.
+Review against the defects listed in the task notes. The original starter source was not present in this workspace, so I could not independently verify that each defect existed there. I checked that the current `app/main.py` contains the corresponding mitigations described below.
 
 | # | Where | What is wrong | How you'd notice it | How I fixed it |
 |---|---|---|---|---|
