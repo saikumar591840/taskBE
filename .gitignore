@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+Dockerfile
+sample_seed.py
+sample_data/
+employees.json
+attendance_logs.json
